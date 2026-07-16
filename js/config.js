@@ -55,9 +55,9 @@ const WHATSAPP_CONFIG = {
 const PRODUCT_CONFIG = {
   NAME: "BAVIN PC1155",
   BRAND: "BAVIN",
-  PRICE: 24999,          // in smallest display unit you use, e.g. Naira
+  PRICE: 53300,          // in smallest display unit you use, e.g. Naira
   CURRENCY: "NGN",
-  COMPARE_AT_PRICE: 34999,
+  COMPARE_AT_PRICE: 65000,
   SKU: "BAVIN-PC1155-30000",
 };
 
