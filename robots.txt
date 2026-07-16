@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+Sitemap: https://example.com/sitemap.xml

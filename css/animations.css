@@ -1,0 +1,75 @@
+/* =========================================================================
+   BAVIN PC1155 — Animations
+   ========================================================================= */
+
+@keyframes float-y{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-16px); }
+}
+
+@keyframes pulse-glow{
+  0%, 100%{ opacity: 0.6; transform: scale(1); }
+  50%{ opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes sweep{
+  0%{ transform: translateX(-120%); }
+  100%{ transform: translateX(340%); }
+}
+
+@keyframes pulse-ring{
+  0%{ transform: scale(1); opacity: 0.6; }
+  100%{ transform: scale(1.35); opacity: 0; }
+}
+
+@keyframes pulse-scale{
+  0%, 100%{ transform: scale(1); }
+  50%{ transform: scale(1.12); }
+}
+
+@keyframes loading-sweep{
+  0%{ transform: translateX(-100%); }
+  100%{ transform: translateX(350%); }
+}
+
+@keyframes spin{
+  to{ transform: rotate(360deg); }
+}
+
+@keyframes ripple{
+  to{ transform: scale(3); opacity: 0; }
+}
+
+@keyframes fade-in{
+  from{ opacity: 0; }
+  to{ opacity: 1; }
+}
+
+@keyframes marquee-scroll{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+@keyframes count-tick{
+  from{ opacity: 0.4; }
+  to{ opacity: 1; }
+}
+
+/* Staggered reveal support (JS toggles .in-view, index sets --i via style attr) */
+.reveal{ will-change: opacity, transform; }
+
+/* Skeleton loading shimmer, used while media/js hasn't settled */
+.skeleton{
+  position: relative; overflow: hidden;
+  background: var(--surface-2);
+}
+.skeleton::after{
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  transform: translateX(-100%);
+  animation: skeleton-sweep 1.6s infinite;
+}
+@keyframes skeleton-sweep{
+  100%{ transform: translateX(100%); }
+}

@@ -1,0 +1,58 @@
+/* =========================================================================
+   BAVIN PC1155 — Responsive
+   ========================================================================= */
+
+/* Large desktop / ultra-wide comfort cap */
+@media (min-width: 1600px){
+  :root{ --container-max: 1360px; }
+}
+
+/* Laptop */
+@media (max-width: 1180px){
+  .features-grid{ grid-template-columns: repeat(2, 1fr); }
+  .specs-grid{ grid-template-columns: repeat(2, 1fr); }
+  .stats-row{ grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid{ grid-template-columns: repeat(2, 1fr); }
+  .footer-grid{ grid-template-columns: 1fr 1fr; }
+}
+
+/* Tablet */
+@media (max-width: 960px){
+  .nav-links{ display: none; }
+  .nav-toggle{ display: grid; }
+
+  .hero-grid{ grid-template-columns: 1fr; }
+  .hero-visual{ order: -1; }
+  .hero-copy{ text-align: left; }
+  .hero-ctas{ justify-content: flex-start; }
+
+  .compare{ grid-template-columns: 1fr; }
+  .compare .col-head{ display:none; }
+  .compare > div{ justify-content: space-between !important; text-align: left; }
+  .compare .row-label{ font-weight: 600; }
+
+  .purchase-wrap{ grid-template-columns: 1fr; }
+  .purchase-summary{ position: static; }
+
+  .benefits{ grid-template-columns: 1fr; }
+  .gallery{ grid-template-columns: 1fr; }
+  .gallery-thumbs{ flex-direction: row; overflow-x: auto; }
+  .gallery-thumb{ flex-shrink: 0; }
+}
+
+/* Mobile */
+@media (max-width: 640px){
+  .features-grid, .specs-grid, .stats-row, .reviews-grid{ grid-template-columns: 1fr; }
+  .footer-grid{ grid-template-columns: 1fr; gap: 2rem; }
+  .form-grid{ grid-template-columns: 1fr; }
+  .trust-badges{ gap: 1rem 1.4rem; }
+  .whatsapp-float{ width: 54px; height: 54px; bottom: 1.1rem; right: 1.1rem; }
+  .back-to-top{ right: 4.9rem; width: 42px; height: 42px; bottom: 1.1rem; }
+  .lifestyle-block{ min-height: 360px; }
+  .footer-bottom{ flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 400px){
+  .hero-ctas{ flex-direction: column; align-items: stretch; }
+  .hero-ctas .btn{ width: 100%; }
+}
