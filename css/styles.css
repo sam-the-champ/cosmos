@@ -272,6 +272,7 @@ h1, h2, h3, h4{
 .hero-visual{ position: relative; display: flex; flex-direction: column; align-items: center; gap: 1.8rem; }
 .product-stage{
   position: relative; width: 100%; max-width: 420px; aspect-ratio: 1/1.05;
+  max-height: 520px;
   display: grid; place-items: center;
 }
 .product-stage::before{
@@ -282,7 +283,13 @@ h1, h2, h3, h4{
   filter: blur(30px);
   animation: pulse-glow 4.5s ease-in-out infinite;
 }
-.product-stage img{  object-fit: cover; }
+.product-stage img{
+    width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+ }
 
 .charge-bar{
   width: 100%; max-width: 420px;
