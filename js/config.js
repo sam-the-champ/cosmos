@@ -64,7 +64,7 @@ const PRODUCT_CONFIG = {
 const BUSINESS_CONFIG = {
   PHONE: "+234 800 000 0000",
   EMAIL: "hello@yourstore.com",
-  ADDRESS: "12 Admiralty Way, Lekki Phase 1, Lagos, Nigeria",
+  ADDRESS: "Ojodu Berger",
   HOURS: "Mon – Sat, 9:00 AM – 7:00 PM (WAT)",
   SOCIALS: {
     instagram: "https://instagram.com/yourstore",
