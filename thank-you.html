@@ -16,17 +16,27 @@
   body{ min-height: 100svh; display:flex; align-items:center; justify-content:center; }
   .ty-wrap{ max-width: 560px; text-align:center; padding: clamp(1.5rem,4vw,3rem); }
   .ty-mark{
-    width: 88px; height: 88px; border-radius: 50%; margin-inline:auto; margin-bottom: 2rem;
-    background: var(--grad-charge-soft); border: 1px solid var(--border);
-    display:grid; place-items:center; color: var(--amber-1);
-    animation: pulse-scale 2.4s ease-in-out infinite;
-  }
+    width:88px;
+    height:88px;
+    border-radius:50%;
+    margin-inline:auto;
+    margin-bottom:2rem;
+    background:var(--grad-charge-soft);
+    border:1px solid var(--border);
+    display:grid;
+    place-items:center;
+    color:var(--amber-1);
+
+    animation:
+        popIn .8s cubic-bezier(.18,.89,.32,1.28),
+        pulse-scale 2.4s ease-in-out infinite .8s;
+}
   .ty-mark svg{ width: 40px; height: 40px; }
   .ty-wrap h1{ font-size: var(--fs-h1); margin-bottom: 1rem; }
   .ty-wrap p.lead{ color: var(--text-secondary); font-size: var(--fs-lead); margin-bottom: 2rem; }
   .ty-order-id{ font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 2.5rem; }
   .ty-steps{ text-align:left; margin-bottom: 2.5rem; }
-  .ty-step{ display:flex; gap:1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .ty-step{ display:flex; gap:1rem; padding: 1.6rem 0; border-bottom: 1px solid var(--border); }
   .ty-step:last-child{ border-bottom:none; }
   .ty-step .n{ font-family: var(--font-mono); color: var(--amber-1); font-size: 0.85rem; padding-top: 0.15rem; }
   .ty-step h4{ font-size: 0.98rem; margin-bottom: 0.2rem; }
@@ -87,4 +97,56 @@
   })();
 </script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+(function () {
+  function fire() {
+    const duration = 3500;
+    const animationEnd = Date.now() + duration;
+
+    const defaults = {
+      startVelocity: 35,
+      spread: 360,
+      ticks: 120,
+      zIndex: 9999
+    };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function () {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 70 * (timeLeft / duration);
+
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: {
+          x: randomInRange(0.1, 0.3),
+          y: Math.random() - 0.2
+        }
+      });
+
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: {
+          x: randomInRange(0.7, 0.9),
+          y: Math.random() - 0.2
+        }
+      });
+
+    }, 250);
+  }
+
+  window.addEventListener("load", fire);
+})();
+</script>
 </html>
