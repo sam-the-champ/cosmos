@@ -5,7 +5,9 @@
 (function () {
   "use strict";
 
-  const form = document.querySelector("#purchase-form");
+ const section = document.querySelector("#purchase-form");
+ const form = document.querySelector("#purchase-form-el");
+
   if (!form) return;
 
   /* ---------------- EmailJS init (safe no-op if library absent/misconfigured) ---------------- */
