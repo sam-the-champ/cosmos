@@ -47,7 +47,7 @@ const EMAILJS_CONFIG = {
 
 /* ============ WHATSAPP ============ */
 const WHATSAPP_CONFIG = {
-  NUMBER: "2348000000000", // international format, digits only, no + or spaces
+  NUMBER: "2348054902382", // international format, digits only, no + or spaces
   DEFAULT_MESSAGE: "Hello, I'm interested in the BAVIN PC1155 Power Bank.",
 };
 
@@ -62,10 +62,10 @@ const PRODUCT_CONFIG = {
 };
 
 const BUSINESS_CONFIG = {
-  PHONE: "+234 800 000 0000",
-  EMAIL: "hello@yourstore.com",
+  PHONE: "+234 805 490 2382",
+  EMAIL: "cosmosopaleyemovich77@gmail.com",
   ADDRESS: "Ojodu Berger",
-  HOURS: "Mon – Sat, 9:00 AM – 7:00 PM (WAT)",
+  HOURS: "Mon – Sat, 9:00 AM – 9:00 PM (WAT)",
   SOCIALS: {
     instagram: "https://instagram.com/yourstore",
     facebook: "https://facebook.com/yourstore",
