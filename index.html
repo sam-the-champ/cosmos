@@ -532,7 +532,7 @@
     </div>
   </section>
 
-  <!-- ================= PURCHASE FORM ================= -->
+   <!-- ================= PURCHASE FORM ================= -->
   <section id="purchase-form" class="purchase-section container mt-lg">
     <div class="section-head center reveal">
       <p class="eyebrow">Place your order</p>
@@ -540,10 +540,9 @@
     </div>
     <div class="purchase-wrap reveal">
       <div class="card glass purchase-summary">
-        <p class="eyebrow" style="margin-bottom:0.6rem">BAVIN PC1155 · 30000mAh</p>
+        <p class="eyebrow" style="margin-bottom:0.6rem" id="summary-package-label">BAVIN PC1155 · 30000mAh</p>
         <div class="price-row">
           <span class="price" id="summary-price"></span>
-          <span class="price-old" id="summary-old-price"></span>
         </div>
         <ul class="summary-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Built-in Type-C & Lightning cables</li>
@@ -593,22 +592,14 @@
             <input class="form-control" id="state" name="state" type="text" required />
             <span class="field-error" data-error-for="state"></span>
           </div>
-          <div class="form-group">
-            <label>Quantity</label>
-            <div class="qty-stepper">
-              <button type="button" data-step="down" aria-label="Decrease quantity">−</button>
-              <input type="text" name="quantity" value="1" inputmode="numeric" readonly />
-              <button type="button" data-step="up" aria-label="Increase quantity">+</button>
+          <div class="form-group full">
+            <label>Package <span class="req">*</span></label>
+            <div class="radio-group" id="package-picker">
+              <!-- Package pills are rendered by js/form.js from PRODUCT_CONFIG.PACKAGES -->
             </div>
+            <input type="hidden" name="quantity" id="selected-quantity" value="" />
+            <input type="hidden" name="package" id="selected-package-label" value="" />
           </div>
-          <!-- <div class="form-group">
-            <label>Payment Preference</label>
-            <div class="radio-group">
-              <label class="radio-pill checked"><input type="radio" name="payment" value="Pay on Delivery" checked />Pay on Delivery</label>
-              <label class="radio-pill"><input type="radio" name="payment" value="Bank Transfer" />Bank Transfer</label>
-              <label class="radio-pill"><input type="radio" name="payment" value="Card" />Card</label>
-            </div>
-          </div> -->
           <div class="form-group full">
             <label for="instructions">Special Instructions (optional)</label>
             <textarea class="form-control" id="instructions" name="instructions" rows="3"></textarea>
