@@ -1,7 +1,7 @@
 // /**
- * form.js — the conversion point. Validates, emails via EmailJS (no backend),
- * fires Purchase/Lead events, then redirects to thank-you.html.
- */
+//  * form.js — the conversion point. Validates, emails via EmailJS (no backend),
+//  * fires Purchase/Lead events, then redirects to thank-you.html.
+//  */
 (function () {
   "use strict";
 
