@@ -272,7 +272,7 @@ h1, h2, h3, h4{
 .hero-visual{ position: relative; display: flex; flex-direction: column; align-items: center; gap: 1.8rem; }
 .product-stage{
   position: relative; width: 100%; max-width: 420px; aspect-ratio: 1/1.05;
-  max-height: 520px;
+  max-height: 50%;
   display: grid; place-items: center;
 }
 .product-stage::before{

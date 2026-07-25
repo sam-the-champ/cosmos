@@ -63,6 +63,21 @@
     });
   });
 
+   /* ---------------- Standalone video showcase play button ---------------- */
+  const videoShowcase = document.getElementById("product-video");
+  if (videoShowcase) {
+    const video = videoShowcase.querySelector("video");
+    const playBtn = videoShowcase.querySelector(".vs-play");
+    playBtn && video && playBtn.addEventListener("click", () => {
+      video.setAttribute("controls", "true");
+      video.play().catch(() => {});
+      videoShowcase.classList.add("is-playing");
+      window.trackEvent && window.trackEvent("ViewContent", { content_name: PRODUCT_CONFIG.NAME, content_type: "video" });
+    });
+    video && video.addEventListener("pause", () => videoShowcase.classList.remove("is-playing"));
+    video && video.addEventListener("ended", () => videoShowcase.classList.remove("is-playing"));
+  }
+
   /* ---------------- Button ripple ---------------- */
   document.querySelectorAll(".btn").forEach((btn) => {
     btn.addEventListener("click", function (e) {
