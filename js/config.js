@@ -55,10 +55,14 @@ const WHATSAPP_CONFIG = {
 const PRODUCT_CONFIG = {
   NAME: "BAVIN PC1155",
   BRAND: "BAVIN",
-  PRICE: 53300,          // in smallest display unit you use, e.g. Naira
   CURRENCY: "NGN",
-  COMPARE_AT_PRICE: 65000,
   SKU: "BAVIN-PC1155-30000",
+  PACKAGES: [
+    { id: "pack-1", qty: 1, price: 53300, label: "1 Power Bank", tag: "" },
+    { id: "pack-2", qty: 2, price: 93300, label: "2 Power Banks", tag: "Most Popular" },
+    { id: "pack-3", qty: 3, price: 113300, label: "3 Power Banks", tag: "Best Value" },
+  ],
+  DEFAULT_PACKAGE_ID: "pack-2",
 };
 
 const BUSINESS_CONFIG = {
