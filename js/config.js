@@ -52,6 +52,8 @@ const WHATSAPP_CONFIG = {
 };
 
 /* ============ PRODUCT / BUSINESS INFO (used across the page + schema) ============ */
+
+
 const PRODUCT_CONFIG = {
   NAME: "BAVIN PC1155",
   BRAND: "BAVIN",

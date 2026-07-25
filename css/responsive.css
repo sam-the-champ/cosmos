@@ -14,6 +14,13 @@
   .stats-row{ grid-template-columns: repeat(2, 1fr); }
   .reviews-grid{ grid-template-columns: repeat(2, 1fr); }
   .footer-grid{ grid-template-columns: 1fr 1fr; }
+  .packages-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 860px){
+  .packages-grid{ grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; }
+  .video-showcase{ aspect-ratio: 4/3; max-height: none; }
+  .showcase-item{ aspect-ratio: 4/3; }
 }
 
 /* Tablet */
@@ -50,6 +57,8 @@
   .back-to-top{ right: 4.9rem; width: 42px; height: 42px; bottom: 1.1rem; }
   .lifestyle-block{ min-height: 360px; }
   .footer-bottom{ flex-direction: column; align-items: flex-start; }
+  #package-picker.radio-group{ flex-direction: column; align-items: stretch; }
+  #package-picker .radio-pill{ width: 100%; text-align: left; }
 }
 
 @media (max-width: 400px){
