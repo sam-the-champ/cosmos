@@ -41,7 +41,9 @@
 
   function findPackage(id) {
     return (PRODUCT_CONFIG.PACKAGES || []).find((p) => p.id === id);
+    console.log("findPackage", id, PRODUCT_CONFIG.PACKAGES);
   }
+  
 
   function applyPackage(pkg) {
     if (!pkg) return;
