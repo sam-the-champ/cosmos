@@ -1,13 +1,12 @@
-/**
+// /**
  * form.js — the conversion point. Validates, emails via EmailJS (no backend),
  * fires Purchase/Lead events, then redirects to thank-you.html.
  */
 (function () {
   "use strict";
 
- const section = document.querySelector("#purchase-form");
+  const section = document.querySelector("#purchase-form");
  const form = document.querySelector("#purchase-form-el");
-
   if (!form) return;
 
   /* ---------------- EmailJS init (safe no-op if library absent/misconfigured) ---------------- */
@@ -26,25 +25,61 @@
   }
   loadEmailJS(() => {});
 
-  /* ---------------- Quantity stepper ---------------- */
-  const qtyInput = form.querySelector('input[name="quantity"]');
-  form.querySelectorAll(".qty-stepper button").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      let val = parseInt(qtyInput.value, 10) || 1;
-      val += btn.dataset.step === "up" ? 1 : -1;
-      qtyInput.value = Math.min(10, Math.max(1, val));
-    });
-  });
+  /* ---------------- Package picker ----------------
+   * Renders one pill per entry in PRODUCT_CONFIG.PACKAGES, keeps the hidden
+   * `quantity` / `package` fields in sync, and updates the sticky order
+   * summary. window.selectPackage(id) is exposed so the pricing cards
+   * higher up the page can pre-select a package before scrolling here.
+   */
+  const packagePicker = document.getElementById("package-picker");
+  const quantityField = document.getElementById("selected-quantity");
+  const packageLabelField = document.getElementById("selected-package-label");
+  const summaryPrice = document.getElementById("summary-price");
+  const summaryPackageLabel = document.getElementById("summary-package-label");
 
-  /* ---------------- Payment preference pills ---------------- */
-  form.querySelectorAll(".radio-pill").forEach((pill) => {
-    const input = pill.querySelector("input");
-    pill.addEventListener("click", () => {
-      form.querySelectorAll(".radio-pill").forEach((p) => p.classList.remove("checked"));
-      input.checked = true;
-      pill.classList.add("checked");
+  let selectedPackage = null;
+
+  function findPackage(id) {
+    return (PRODUCT_CONFIG.PACKAGES || []).find((p) => p.id === id);
+  }
+
+  function applyPackage(pkg) {
+    if (!pkg) return;
+    selectedPackage = pkg;
+    quantityField.value = pkg.qty;
+    packageLabelField.value = pkg.label;
+    if (summaryPrice && window.formatPrice) summaryPrice.textContent = window.formatPrice(pkg.price);
+    if (summaryPackageLabel) summaryPackageLabel.textContent = `BAVIN PC1155 · ${pkg.label}`;
+    packagePicker.querySelectorAll(".radio-pill").forEach((pill) => {
+      const isMatch = pill.dataset.packageId === pkg.id;
+      pill.classList.toggle("checked", isMatch);
+      const input = pill.querySelector("input");
+      if (input) input.checked = isMatch;
     });
-  });
+  }
+
+  if (packagePicker && Array.isArray(PRODUCT_CONFIG.PACKAGES)) {
+    PRODUCT_CONFIG.PACKAGES.forEach((pkg) => {
+      const pill = document.createElement("label");
+      pill.className = "radio-pill";
+      pill.dataset.packageId = pkg.id;
+      pill.innerHTML = `<input type="radio" name="packageChoice" value="${pkg.id}" />${pkg.label} — ${window.formatPrice ? window.formatPrice(pkg.price) : pkg.price}`;
+      packagePicker.appendChild(pill);
+    });
+
+    packagePicker.addEventListener("click", (e) => {
+      const pill = e.target.closest(".radio-pill");
+      if (!pill) return;
+      applyPackage(findPackage(pill.dataset.packageId));
+    });
+
+    applyPackage(findPackage(PRODUCT_CONFIG.DEFAULT_PACKAGE_ID) || PRODUCT_CONFIG.PACKAGES[0]);
+  }
+
+  window.selectPackage = function (id) {
+    const pkg = findPackage(id);
+    if (pkg) applyPackage(pkg);
+  };
 
   /* ---------------- Validation ---------------- */
   const rules = {
@@ -106,14 +141,16 @@
     function afterSuccess() {
       window.trackEvent && window.trackEvent("Purchase", {
         content_name: PRODUCT_CONFIG.NAME,
-        value: PRODUCT_CONFIG.PRICE * (parseInt(data.quantity, 10) || 1),
+        value: selectedPackage ? selectedPackage.price : 0,
         currency: PRODUCT_CONFIG.CURRENCY,
         num_items: data.quantity,
+        package: data.package,
       });
       try {
         sessionStorage.setItem("bavin_order", JSON.stringify({
           name: data.fullName,
           quantity: data.quantity,
+          package: data.package,
           whatsapp: data.whatsapp,
         }));
       } catch (e) {}
@@ -141,8 +178,9 @@
           city: data.city,
           state: data.state,
           quantity: data.quantity,
+          package: data.package,
+          price: selectedPackage ? window.formatPrice(selectedPackage.price) : "",
           instructions: data.instructions || "None",
-          payment_preference: data.payment || "Not specified",
           product: PRODUCT_CONFIG.NAME,
         })
         .then(afterSuccess)
