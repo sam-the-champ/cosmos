@@ -203,6 +203,41 @@
     applyTheme(currentTheme);
   });
 
+  const packagesGrid = document.getElementById("packages-grid");
+  if (packagesGrid && Array.isArray(PRODUCT_CONFIG.PACKAGES)) {
+    PRODUCT_CONFIG.PACKAGES.forEach((pkg, i) => {
+      const isFeatured = pkg.id === PRODUCT_CONFIG.DEFAULT_PACKAGE_ID;
+      const card = document.createElement("div");
+      card.className = "card package-card reveal" + (isFeatured ? " featured" : "");
+      card.style.setProperty("--i", i);
+      card.innerHTML = `
+        ${pkg.tag ? `<span class="package-tag">${pkg.tag}</span>` : ""}
+        <h3>${pkg.label}</h3>
+        <div>
+          <div class="package-price">${formatPrice(pkg.price)}</div>
+          <div class="package-unit">${formatPrice(Math.round(pkg.price / pkg.qty))} per unit</div>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>${pkg.qty} × BAVIN PC1155, 30000mAh</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Built-in Type-C & Lightning cables</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Fast nationwide shipping</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>12-month warranty</li>
+        </ul>
+        <button type="button" class="btn ${isFeatured ? "btn-primary" : "btn-secondary"} btn-block" data-package-buy="${pkg.id}">Buy Now</button>
+      `;
+      packagesGrid.appendChild(card);
+    });
+
+    packagesGrid.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-package-buy]");
+      if (!btn) return;
+      const id = btn.dataset.packageBuy;
+      window.trackEvent && window.trackEvent("InitiateCheckout", { content_name: PRODUCT_CONFIG.NAME, package: id });
+      if (typeof window.selectPackage === "function") window.selectPackage(id);
+      document.querySelector("#purchase-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   /* ---------------- WhatsApp links (built from config) ---------------- */
   document.querySelectorAll("[data-whatsapp-link]").forEach((a) => {
     const msg = encodeURIComponent(WHATSAPP_CONFIG.DEFAULT_MESSAGE);

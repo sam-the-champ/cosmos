@@ -394,6 +394,25 @@ h1, h2, h3, h4{
 .showcase-item .showcase-caption h4{ color: #fff; font-size: 1.05rem; margin-bottom: 0.2rem; }
 .showcase-item .showcase-caption p{ color: rgba(255,255,255,0.78); font-size: 0.88rem; }
 
+* ---------- Pricing / Packages ---------- */
+.packages-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.package-card{
+  padding: 2rem; position: relative; display: flex; flex-direction: column; gap: 1.2rem;
+  border: 1px solid var(--border);
+}
+.package-card.featured{ border-color: var(--amber-1); box-shadow: var(--shadow-glow); }
+.package-tag{
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--grad-charge); color: #14100a; font-size: var(--fs-micro);
+  font-weight: 700; padding: 0.35rem 0.9rem; border-radius: 999px; white-space: nowrap;
+}
+.package-card h3{ font-size: 1.1rem; }
+.package-card .package-price{ font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; }
+.package-card .package-unit{ color: var(--text-secondary); font-size: 0.85rem; }
+.package-card ul{ display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+.package-card li{ display: flex; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); }
+.package-card li svg{ width: 15px; height: 15px; color: var(--amber-1); flex-shrink: 0; margin-top: 2px; }
+
 /* ---------- Gallery ---------- */
 .gallery{ display: grid; grid-template-columns: 88px 1fr; gap: 1.25rem; }
 .gallery-thumbs{ display: flex; flex-direction: column; gap: 0.75rem; }
