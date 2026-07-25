@@ -203,6 +203,24 @@
     applyTheme(currentTheme);
   });
 
+  /* ---------------- Pricing formatter (shared) ---------------- */
+  function formatPrice(n) {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: PRODUCT_CONFIG.CURRENCY,
+      maximumFractionDigits: 0,
+    }).format(n);
+  }
+  window.formatPrice = formatPrice;
+
+  /* ---------------- Hero starting price ---------------- */
+  const heroPriceEl = document.getElementById("hero-price");
+  if (heroPriceEl && Array.isArray(PRODUCT_CONFIG.PACKAGES) && PRODUCT_CONFIG.PACKAGES.length) {
+    const lowest = PRODUCT_CONFIG.PACKAGES.reduce((a, b) => (a.price < b.price ? a : b));
+    heroPriceEl.textContent = `From ${formatPrice(lowest.price)}`;
+  }
+
+  /* ---------------- Packages / pricing grid ---------------- */
   const packagesGrid = document.getElementById("packages-grid");
   if (packagesGrid && Array.isArray(PRODUCT_CONFIG.PACKAGES)) {
     PRODUCT_CONFIG.PACKAGES.forEach((pkg, i) => {

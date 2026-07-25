@@ -70,7 +70,6 @@ const PRODUCT_CONFIG = {
 const BUSINESS_CONFIG = {
   PHONE: "+234 805 490 2382",
   EMAIL: "cosmosopaleyemovich77@gmail.com",
-  ADDRESS: "Ojodu Berger",
   HOURS: "Mon – Sat, 9:00 AM – 9:00 PM (WAT)",
   SOCIALS: {
     instagram: "https://instagram.com/yourstore",
