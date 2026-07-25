@@ -226,7 +226,7 @@
     PRODUCT_CONFIG.PACKAGES.forEach((pkg, i) => {
       const isFeatured = pkg.id === PRODUCT_CONFIG.DEFAULT_PACKAGE_ID;
       const card = document.createElement("div");
-      card.className = "card package-card reveal" + (isFeatured ? " featured" : "");
+      card.className = "card package-card" + (isFeatured ? " featured" : "");
       card.style.setProperty("--i", i);
       card.innerHTML = `
         ${pkg.tag ? `<span class="package-tag">${pkg.tag}</span>` : ""}
