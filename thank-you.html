@@ -42,11 +42,19 @@
   .ty-step h4{ font-size: 0.98rem; margin-bottom: 0.2rem; }
   .ty-step p{ color: var(--text-secondary); font-size: 0.88rem; }
   .ty-actions{ display:flex; gap: 0.9rem; justify-content:center; flex-wrap: wrap; }
+  .ty-graphic{
+    width: 100%; aspect-ratio: 16/10; border-radius: var(--radius-lg); overflow: hidden;
+    margin-bottom: 2.2rem; border: 1px solid var(--border);
+  }
+  .ty-graphic img, .ty-graphic .media-placeholder{ width: 100%; height: 100%; object-fit: cover; }
 </style>
 </head>
 <body>
 <div class="mouse-glow" aria-hidden="true"></div>
 <div class="ty-wrap reveal in-view">
+  <div class="ty-graphic">
+    <img src="assets/images/thank-you-graphic.jpg" data-ph="Thank-you graphic — assets/images/thank-you-graphic.jpg" alt="Order confirmed" />
+  </div>
   <div class="ty-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg></div>
   <p class="eyebrow" style="justify-content:center">Order Confirmed</p>
   <h1>Thanks, your order is in.</h1>
