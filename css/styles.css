@@ -365,7 +365,12 @@ h1, h2, h3, h4{
   aspect-ratio: 16/9; max-height: 640px;
   background: var(--surface);
 }
-.video-showcase video, .video-showcase .media-placeholder{ width: 100%; height: 100%; object-fit: cover; }
+.video-showcase video, .video-showcase .media-placeholder{ 
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+ }
 .video-showcase .vs-play{
   position: absolute; inset: 0; margin: auto; width: 84px; height: 84px; border-radius: 50%;
   background: rgba(10,10,12,0.55); backdrop-filter: blur(6px);
@@ -423,7 +428,12 @@ h1, h2, h3, h4{
   background: var(--surface);
 }
 .gallery-thumb.active, .gallery-thumb:hover{ opacity: 1; border-color: var(--amber-1); }
-.gallery-thumb img, .gallery-thumb video{ width: 100%; height: 100%; object-fit: cover; }
+.gallery-thumb img, .gallery-thumb video{
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
 .gallery-stage{
   position: relative; border-radius: var(--radius-lg); overflow: hidden;
   aspect-ratio: 16/10; background: var(--surface);
@@ -431,7 +441,12 @@ h1, h2, h3, h4{
 }
 .gallery-slide{ position: absolute; inset: 0; opacity: 0; transition: opacity var(--dur-base) var(--ease-out); }
 .gallery-slide.active{ opacity: 1; }
-.gallery-slide img, .gallery-slide video{ width: 100%; height: 100%; object-fit: cover; }
+.gallery-slide img, .gallery-slide video{ 
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+ }
 .gallery-zoom-btn, .gallery-nav-btn{
   position: absolute; z-index: 2;
   width: 42px; height: 42px; border-radius: 50%;
