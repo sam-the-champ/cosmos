@@ -1,32 +1,9 @@
 # BAVIN PC1155 — Landing Page
 
-## 1. Drop in your media
-The page already looks for these exact files. Until they exist, each spot
-shows a labeled placeholder (dashed box) instead of a broken image — so you
-can preview the whole page before your assets are ready, and everything
-lights up automatically the moment you add the real file at the same path.
-
-```
-assets/images/hero-product.png        — Hero product shot (transparent/cutout background looks best)
-assets/images/gallery-1.jpg           — Front view
-assets/images/gallery-2.jpg           — Ports close-up
-assets/images/gallery-3.jpg           — Built-in cables extended
-assets/images/gallery-4.jpg           — In-hand, for scale
-assets/images/gallery-thumb-1.jpg …5.jpg  — Small thumbnails matching the 5 slides
-assets/images/video-poster.jpg        — Poster frame for the product video
-assets/images/lifestyle-travel.jpg    — Lifestyle: travel/airport
-assets/images/lifestyle-work.jpg      — Lifestyle: desk/work
-assets/images/review-avatar-1.jpg …3.jpg  — Customer avatars
-assets/images/og-cover.jpg            — Social share preview image (1200×630)
-assets/images/logo.png                — Logo for structured data
-assets/icons/favicon.png              — Browser tab icon
-assets/videos/product-demo.mp4        — Product demo video
-```
-
 Any filename or extension can be changed — just update the matching `src`
 in `index.html`.
 
-## 2. Turn on real integrations (edit `js/config.js` only)
+## 1. Turn on real integrations (edit `js/config.js` only)
 - **Meta Pixels** — add IDs to the `FACEBOOK_PIXELS` array (works with 1–5+ pixels).
 - **GA4 / GTM / TikTok / Snapchat / Clarity / Hotjar** — fill in `ANALYTICS_CONFIG`.
 - **EmailJS** (sends the order form to your inbox, no backend required):
