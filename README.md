@@ -19,7 +19,7 @@ in `index.html`.
 - **WhatsApp** — set your number (digits only, country code, no `+`) in `WHATSAPP_CONFIG`.
 - **Price / product / business info** — `PRODUCT_CONFIG` and `BUSINESS_CONFIG`.
 
-## 3. File structure
+## 2. File structure
 ```
 index.html
 thank-you.html
@@ -28,7 +28,7 @@ js/  config.js · analytics.js · main.js · gallery.js · form.js
 assets/ images/ videos/ icons/ fonts/
 ```
 
-## 4. Notes
+## 3. Notes
 - No frameworks — hand-written HTML5, CSS3, and vanilla JS.
 - Dark mode is the default; a theme toggle in the nav switches to light.
 - `prefers-reduced-motion` is respected throughout.
