@@ -12,6 +12,7 @@
  * disable Meta Pixel entirely (no errors will be thrown).
  */
 const FACEBOOK_PIXELS = [
+  "3181374742251675"
   // "PIXEL_ID_1",
   // "PIXEL_ID_2",
   // "PIXEL_ID_3",
