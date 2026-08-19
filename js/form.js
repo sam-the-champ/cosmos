@@ -329,18 +329,15 @@
       window.emailjs
         .send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, {
           to_email: EMAILJS_CONFIG.NOTIFY_EMAIL,
-          full_name: data.fullName,
+          fullName: data.fullName,
           phone: data.phone,
           whatsapp: data.whatsapp,
           email: data.email || "Not provided",
           address: data.address,
           city: data.city,
           state: data.state,
-          quantity: data.quantity,
           package: data.package,
-          price: selectedPackage ? window.formatPrice(selectedPackage.price) : "",
           instructions: data.instructions || "None",
-          product: PRODUCT_CONFIG.NAME,
         })
         .then(afterSuccess)
         .catch(afterFailure);
