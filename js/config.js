@@ -39,10 +39,10 @@ const ANALYTICS_CONFIG = {
  * 4. Account → General → copy your Public Key
  */
 const EMAILJS_CONFIG = {
-  PUBLIC_KEY: "YOUR_EMAILJS_PUBLIC_KEY",
-  SERVICE_ID: "YOUR_EMAILJS_SERVICE_ID",
-  TEMPLATE_ID: "YOUR_EMAILJS_TEMPLATE_ID",
-  NOTIFY_EMAIL: "your-email@example.com", // set as the "To" address in your EmailJS template
+  PUBLIC_KEY: "c9X2eW874ghw_tgDa",
+  SERVICE_ID: "service_w5pg40p",
+  TEMPLATE_ID: "template_xe4c0dt",
+  NOTIFY_EMAIL: "cosmosopaleyemovich77@gmail.com", // set as the "To" address in your EmailJS template
 };
 
 /* ============ WHATSAPP ============ */
