@@ -170,20 +170,30 @@
 
   /* ---------------- EmailJS init (safe no-op if library absent/misconfigured) ---------------- */
   function loadEmailJS(cb) {
-    if (window.emailjs) return cb();
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
-    script.onload = () => {
-      try {
-        window.emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
-      } catch (e) {}
-      cb();
-    };
-    script.onerror = () => cb();
-    document.head.appendChild(script);
+  if (window.emailjs) {
+    window.emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+    return cb();
   }
-  loadEmailJS(() => {});
 
+  const script = document.createElement("script");
+
+  script.src =
+    "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
+
+  script.onload = () => {
+    window.emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+    cb();
+  };
+
+  script.onerror = () => {
+    console.error("Failed to load EmailJS");
+    cb();
+  };
+
+  document.head.appendChild(script);
+}
+
+loadEmailJS(() => {});
   /* ---------------- Package picker ----------------
    * Renders one pill per entry in PRODUCT_CONFIG.PACKAGES, keeps the hidden
    * `quantity` / `package` fields in sync, and updates the sticky order
@@ -327,20 +337,19 @@
 
     if (window.emailjs && EMAILJS_CONFIG.SERVICE_ID && EMAILJS_CONFIG.SERVICE_ID !== "YOUR_EMAILJS_SERVICE_ID") {
       window.emailjs
-        .send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, {
-          to_email: EMAILJS_CONFIG.NOTIFY_EMAIL,
-          fullName: data.fullName,
-          phone: data.phone,
-          whatsapp: data.whatsapp,
-          email: data.email || "Not provided",
-          address: data.address,
-          city: data.city,
-          state: data.state,
-          package: data.package,
-          instructions: data.instructions || "None",
-        })
-        .then(afterSuccess)
-        .catch(afterFailure);
+  .send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, {
+    fullName: data.fullName,
+    phone: data.phone,
+    whatsapp: data.whatsapp,
+    email: data.email || "Not provided",
+    address: data.address,
+    city: data.city,
+    state: data.state,
+    package: data.package,
+    instructions: data.instructions || "None",
+  })
+  .then(afterSuccess)
+  .catch(afterFailure);
     } else {
       // EmailJS not configured yet — don't block the demo/testing flow.
       console.warn("EmailJS is not configured. Add your keys in js/config.js to send real emails.");
