@@ -351,6 +351,7 @@ loadEmailJS(() => {});
     city: data.city,
     state: data.state,
     package: data.package,
+    price: data.price,
     instructions: data.instructions || "None",
   })
   .then(afterSuccess)
