@@ -205,6 +205,7 @@ loadEmailJS(() => {});
   const packageLabelField = document.getElementById("selected-package-label");
   const summaryPrice = document.getElementById("summary-price");
   const summaryPackageLabel = document.getElementById("summary-package-label");
+  const priceField = document.getElementById("selected-price");
 
   let selectedPackage = null;
 
@@ -215,9 +216,13 @@ loadEmailJS(() => {});
   function applyPackage(pkg) {
     if (!pkg) return;
     selectedPackage = pkg;
-    quantityField.value = pkg.qty;
-    packageLabelField.value = pkg.label;
-    if (summaryPrice && window.formatPrice) summaryPrice.textContent = window.formatPrice(pkg.price);
+     quantityField.value = pkg.qty;
+     packageLabelField.value = pkg.label;
+     priceField.value = pkg.price;
+
+     if (summaryPrice && window.formatPrice) {
+  summaryPrice.textContent = window.formatPrice(pkg.price);
+}
     if (summaryPackageLabel) summaryPackageLabel.textContent = `BAVIN PC1155 · ${pkg.label}`;
     packagePicker.querySelectorAll(".radio-pill").forEach((pill) => {
       const isMatch = pill.dataset.packageId === pkg.id;
